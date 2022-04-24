@@ -11,10 +11,11 @@ import UIKit
 struct ContentView: View {
     var body: some View {
         VStack{
+            Spacer()
             UnknownProgressView()
             Divider()
             LinearProgressView()
-            
+            Spacer()
             
             
         }
@@ -37,16 +38,16 @@ struct UnknownProgressView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 10){
             Text("Progress View").font(.largeTitle)
-            ZStack{
-                Text(isLoading ? "Loading data" :  "press the button to load data")
-                    .font(.title2)
-                if(isLoading){
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                        .scaleEffect(3)
-                }
-                
+            if(isLoading){
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .scaleEffect(3)
             }
+            Text(isLoading ? "Loading data" :  "press the button to load data")
+                .font(.title2)
+                
+                
+            
             Button(
                 isLoading ? "Cancel" : "Load",
                 action: {isLoading.toggle()}
